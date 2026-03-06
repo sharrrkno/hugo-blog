@@ -29,6 +29,20 @@ enabled = false
 since = 2024
 customText = ""
 
+[params.colorScheme]
+toggle = true
+default = "auto"
+
+[params.widgets]
+homepage = [
+    { type = "archives" },
+    { type = "categories" },
+    { type = "tag-cloud" }
+]
+page = [
+    { type = "toc" }
+]
+
 [[params.social]]
 identifier = "github"
 name = "GitHub"
@@ -64,4 +78,3 @@ weight = 3
 
 [markup.highlight]
 style = "dracula"
-
