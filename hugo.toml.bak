@@ -1,0 +1,80 @@
+baseURL = "https://www.337535.xyz/"
+languageCode = "zh-cn"
+title = "My Blog"
+theme = "stack"
+paginate = 10
+
+[outputs]
+home = ["HTML", "JSON"]
+
+[params]
+mainSections = ["posts"]
+featuredImageField = "image"
+rssFullContent = true
+favicon = ""
+
+[params.sidebar]
+emoji = "🚀"
+subtitle = "欢迎来到我的博客"
+
+[params.article]
+math = false
+toc = true
+readingTime = true
+
+[params.comments]
+enabled = false
+
+[params.footer]
+since = 2024
+customText = ""
+
+[params.colorScheme]
+toggle = true
+default = "auto"
+
+[params.widgets]
+homepage = [
+    { type = "archives" },
+    { type = "categories" },
+    { type = "tag-cloud" }
+]
+page = [
+    { type = "toc" }
+]
+
+[[params.social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/yourusername"
+
+[[params.social]]
+identifier = "twitter"
+name = "Twitter"
+url = "https://twitter.com/yourusername"
+
+[[params.social]]
+identifier = "email"
+name = "Email"
+url = "mailto:your-email@example.com"
+
+[[menu.main]]
+identifier = "home"
+name = "首页"
+url = "/"
+weight = 1
+
+[[menu.main]]
+identifier = "archives"
+name = "归档"
+url = "/archives"
+weight = 2
+
+[[menu.main]]
+identifier = "about"
+name = "关于"
+url = "/about"
+weight = 3
+
+[markup.highlight]
+style = "dracula"
