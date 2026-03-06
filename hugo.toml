@@ -36,6 +36,7 @@ default = "auto"
 
 [params.widgets]
 homepage = [
+    { type = "search" },
     { type = "archives" },
     { type = "categories" },
     { type = "tag-cloud" }

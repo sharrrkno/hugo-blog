@@ -7,6 +7,7 @@ categories:
 tags:
   - 开始
   - 博客
+image: "/images/posts/hello-world-cover.jpg"
 ---
 
 # 欢迎来到我的博客

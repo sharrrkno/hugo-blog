@@ -8,6 +8,7 @@ tags:
   - Hugo
   - 博客
   - 教程
+image: "/images/posts/hugo-quickstart-cover.jpg"
 ---
 
 # Hugo 快速入门指南
