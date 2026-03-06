@@ -1,0 +1,20 @@
+# Hugo
+/public/
+/resources/_gen/
+*.exe
+*.exe~
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
