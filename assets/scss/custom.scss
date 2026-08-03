@@ -1,0 +1,167 @@
+/* 自定义 SCSS 样式 - Hugo Stack 主题定制 */
+/* 此文件覆盖 themes/stack/assets/scss/custom.scss，主题更新时不会被覆盖 */
+
+/* 深色主题优化 */
+:root[data-scheme="dark"] {
+    /* 优化深色背景色 */
+    --body-background: #0d0d0d;
+    --card-background: #1a1a1a;
+    
+    /* 优化文字颜色 */
+    --body-text-color: rgba(255, 255, 255, 0.85);
+    --card-text-color-main: rgba(255, 255, 255, 0.95);
+    --card-text-color-secondary: rgba(255, 255, 255, 0.75);
+    
+    /* 优化强调色 */
+    --accent-color: #e0e0e0;
+    --accent-color-darker: #b0b0b0;
+}
+
+/* 浅色主题优化 */
+:root[data-scheme="light"] {
+    --body-background: #f8f9fa;
+    --card-background: #ffffff;
+}
+
+/* 卡片样式增强 */
+.article-list .article-item {
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-l2);
+    }
+}
+
+/* 侧边栏优化 */
+.left-sidebar {
+    header {
+        .site-avatar {
+            .site-logo {
+                border: 3px solid var(--accent-color);
+                transition: transform 0.3s ease;
+                
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+        
+        .site-name {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+    }
+}
+
+/* 右侧边栏小部件样式 */
+.right-sidebar {
+    display: flex !important;
+    
+    .widget {
+        margin-bottom: var(--widget-separation);
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* 菜单项样式 */
+.menu {
+    li {
+        transition: all 0.2s ease;
+        
+        &.current > a {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+}
+
+/* 文章列表卡片 */
+.article-list {
+    .article-item {
+        border-radius: 12px;
+        overflow: hidden;
+        
+        .article-image {
+            border-radius: 12px 12px 0 0;
+        }
+    }
+}
+
+/* 标签和分类样式 */
+.tag, .category {
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .right-sidebar {
+        display: none !important;
+    }
+    
+    .left-sidebar {
+        header {
+            .site-avatar {
+                --sidebar-avatar-size: 80px;
+            }
+        }
+    }
+}
+
+/* 深色模式下的链接颜色 */
+:root[data-scheme="dark"] {
+    a {
+        color: #64b5f6;
+        
+        &:hover {
+            color: #90caf9;
+        }
+    }
+}
+
+/* 代码块样式优化 */
+pre {
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    
+    code {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}
+
+/* 分页按钮样式 */
+.pagination {
+    a, span {
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}

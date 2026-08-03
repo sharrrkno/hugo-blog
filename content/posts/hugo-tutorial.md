@@ -1,6 +1,7 @@
 ---
 title: Hugo 快速入门指南
 date: 2024-03-04
+lastmod: 2026-08-03
 description: 学习如何使用 Hugo 和 Stack 主题快速搭建个人博客。
 categories:
   - 技术
@@ -13,7 +14,7 @@ image: "/images/posts/hugo-quickstart-cover.jpg"
 
 # Hugo 快速入门指南
 
-Hugo 是一个用 Go 语言编写的静态网站生成器，以其极快的构建速度而闻名。本文将介绍如何使用 Hugo 和 Stack 主���快速搭建个人博客。
+Hugo 是一个用 Go 语言编写的静态网站生成器，以其极快的构建速度而闻名。本文将介绍如何使用 Hugo 和 Stack 主题快速搭建个人博客。
 
 ## 为什么选择 Hugo？
 
@@ -72,7 +73,6 @@ baseURL = "https://yourusername.github.io/my-blog/"
 languageCode = "zh-cn"
 title = "My Blog"
 theme = "stack"
-paginate = 10
 ```
 
 ## 创建文章
@@ -104,6 +104,16 @@ hugo
 1. 创建一个 GitHub 仓库，命名为 `yourusername.github.io`
 2. 将 `public` 目录的内容推送到仓库
 3. 启用 GitHub Pages
+
+## 用 KaTeX 渲染数学公式
+
+Hugo 结合 Stack 主题内置的 KaTeX 支持，可以直接书写数学公式：
+
+$$
+E = mc^2
+$$
+
+行内公式 $a^2 + b^2 = c^2$ 也可以正常渲染。
 
 ## 总结
 

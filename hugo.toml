@@ -2,81 +2,139 @@ baseURL = "https://www.337535.xyz/"
 languageCode = "zh-cn"
 title = "My Blog"
 theme = "stack"
-paginate = 10
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+
+# 分页配置（Hugo 0.123+ 使用 pagination，替代已废弃的 paginate）
+[pagination]
+    pagerSize = 10
+
+# 美化文章 URL
+[permalinks]
+    posts = "/posts/:slug/"
+    page = "/:slug/"
 
 [outputs]
-home = ["HTML", "JSON"]
+    home = ["HTML", "JSON"]
+
+[related]
+    includeNewer = true
+    threshold    = 60
+    toLower      = false
+    indices = [
+        { name = "tags", weight = 100 },
+        { name = "categories", weight = 200 },
+    ]
 
 [params]
-mainSections = ["posts"]
-featuredImageField = "image"
-rssFullContent = true
-favicon = ""
+    mainSections = ["posts"]
+    featuredImageField = "image"
+    rssFullContent = true
+    # favicon 由 layouts/_partials/head/custom.html 通过静态文件提供
+    favicon = ""
+    description = "欢迎来到我的博客"
 
 [params.sidebar]
-avatar = "images/avatar.png"
-emoji = "🚀"
-subtitle = "欢迎来到我的博客"
+    avatar = "images/avatar.png"
+    emoji = "🚀"
+    subtitle = "欢迎来到我的博客"
 
 [params.article]
-math = false
-toc = true
-readingTime = true
+    math = true
+    toc = true
+    readingTime = true
+
+    [params.article.list]
+        # 列表页（首页/归档）显示文章标签
+        showTags = true
+
+    [params.article.license]
+        enabled = true
+        default = "本文采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议，转载需注明出处。"
 
 [params.comments]
-enabled = false
+    enabled = false
 
 [params.footer]
-since = 2024
-customText = ""
+    since = 2024
+    customText = ""
 
 [params.colorScheme]
-toggle = true
-default = "auto"
+    toggle = true
+    default = "auto"
 
 [params.widgets]
-homepage = [
-    { type = "search" },
-    { type = "archives" },
-    { type = "categories" },
-    { type = "tag-cloud" }
-]
-page = [
-    { type = "toc" }
-]
+    homepage = [
+        { type = "search" },
+        { type = "archives" },
+        { type = "categories" },
+        { type = "tag-cloud" }
+    ]
+    page = [
+        { type = "toc" }
+    ]
+
+# OpenGraph / Twitter Card 分享优化
+[params.opengraph.twitter]
+    site = "@yourusername"
+    card = "summary_large_image"
 
 [[params.social]]
-identifier = "github"
-name = "GitHub"
-url = "https://github.com/yourusername"
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/yourusername"
 
 [[params.social]]
-identifier = "twitter"
-name = "Twitter"
-url = "https://twitter.com/yourusername"
+    identifier = "twitter"
+    name = "Twitter"
+    url = "https://twitter.com/yourusername"
 
 [[params.social]]
-identifier = "email"
-name = "Email"
-url = "mailto:your-email@example.com"
+    identifier = "email"
+    name = "Email"
+    url = "mailto:your-email@example.com"
 
 [[menu.main]]
-identifier = "home"
-name = "首页"
-url = "/"
-weight = 1
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 1
 
 [[menu.main]]
-identifier = "archives"
-name = "归档"
-url = "/archives"
-weight = 2
+    identifier = "archives"
+    name = "归档"
+    url = "/archives"
+    weight = 2
 
 [[menu.main]]
-identifier = "about"
-name = "关于"
-url = "/about"
-weight = 3
+    identifier = "about"
+    name = "关于"
+    url = "/about"
+    weight = 3
 
-[markup.highlight]
-style = "dracula"
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.extensions]
+            [markup.goldmark.extensions.passthrough]
+                enable = true
+                [markup.goldmark.extensions.passthrough.delimiters]
+                    block = [["\\[", "\\]"], ["$$", "$$"]]
+                    inline = [["\\(", "\\)"]]
+
+        [markup.goldmark.renderer]
+            # 允许 Markdown 中内嵌 HTML
+            unsafe = true
+
+    [markup.tableOfContents]
+        endLevel = 4
+        ordered = true
+        startLevel = 2
+
+    [markup.highlight]
+        noClasses = false
+        codeFences = true
+        guessSyntax = true
+        lineNoStart = 1
+        lineNos = true
+        lineNumbersInTable = true
+        tabWidth = 4
