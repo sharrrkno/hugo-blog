@@ -30,12 +30,12 @@ hasCJKLanguage = true
     mainSections = ["posts"]
     featuredImageField = "image"
     rssFullContent = true
-    # favicon 由 layouts/_partials/head/custom.html 通过静态文件提供
-    favicon = ""
+    # favicon 与头像统一使用 static 目录的图片
+    favicon = "/images/avatar.png"
     description = "欢迎来到我的博客"
 
 [params.sidebar]
-    avatar = "images/avatar.png"
+    avatar = "/images/avatar.png"
     emoji = "🚀"
     subtitle = "欢迎来到我的博客"
 

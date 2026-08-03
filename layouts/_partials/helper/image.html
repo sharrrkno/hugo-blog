@@ -1,0 +1,68 @@
+{{- /* 站点覆盖 themes/stack/layouts/_partials/helper/image.html
+   增加 static 静态文件回退支持：
+   - 页面资源（Page Bundle）优先
+   - 找不到时回退到 static 目录 URL
+*/ -}}
+
+{{- $result := "" -}}
+
+{{- if .Image -}}
+    {{- $url := urls.Parse .Image -}}
+    {{- $permalink := .Image -}}
+    {{- $resource := "" -}}
+
+    {{- if not (in (slice "https" "http") $url.Scheme) -}}
+        {{- /* 本地图片：先尝试页面资源 */ -}}
+        {{- $resource = .Resources.Get (printf "%s" (.Image | safeURL)) -}}
+
+        {{- /* 页面资源找不到时，回退到 static 静态文件 */ -}}
+        {{- if not $resource -}}
+            {{- $permalink = .Image | safeURL -}}
+            {{- if not (hasPrefix $permalink "/") -}}
+                {{- $permalink = printf "/%s" $permalink -}}
+            {{- end -}}
+        {{- else -}}
+            {{- $permalink = $resource.RelPermalink -}}
+        {{- end -}}
+    {{- else -}}
+        {{- /* 远程图片 */ -}}
+        {{- with try (resources.GetRemote $url) -}}
+            {{- with .Err -}}
+                {{- errorf "%s" . -}}
+            {{- else with .Value -}}
+                {{- $resource = . -}}
+                {{- $permalink = $resource.RelPermalink -}}
+            {{- else -}}
+                {{- errorf "Unable to get remote resource %q" $url -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- with $resource -}}
+        {{- if reflect.IsImageResourceWithMeta . -}}
+            {{- $result = dict
+                "Resource" $resource
+                "Permalink" $permalink
+                "Height" $resource.Height
+                "Width" $resource.Width
+            -}}
+        {{- else -}}
+            {{- $result = dict
+                "Resource" $resource
+                "Permalink" $permalink
+                "Height" nil
+                "Width" nil
+            -}}
+        {{- end -}}
+    {{- else -}}
+        {{- /* 无资源对象（static 文件）时，仅提供 Permalink，不提供处理能力 */ -}}
+        {{- $result = dict
+            "Resource" nil
+            "Permalink" $permalink
+            "Height" nil
+            "Width" nil
+        -}}
+    {{- end -}}
+{{- end -}}
+
+{{- return $result -}}
